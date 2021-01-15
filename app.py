@@ -40,9 +40,13 @@ def update_figure(selected_year):
 
     return fig
 
+if __name__ == "__main__":
+    app.config.update({
+        # as the proxy server will remove the prefix
+        'routes_pathname_prefix': '/', 
 
-app.run_server(host='0.0.0.0', debug=True, port=8050)
-
-
-if __name__ == '__main__':
-    app.run_server(debug=True)
+        # the front-end will prefix this string to the requests
+        # that are made to the proxy server
+        'requests_pathname_prefix': 'SAAGIE_BASE_PATH/'
+    })
+    app.run_server(debug=True, host='0.0.0.0', port=8050)
